@@ -1,0 +1,2 @@
+# blackmagic
+Python black magics
