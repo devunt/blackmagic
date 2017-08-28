@@ -20,7 +20,10 @@ class ProfileMeta(type):
                     start_ms = time()
                     returned_value = value(*args, **kwargs)
                     end_ms = time()
-                    print(f"{cls_name}::{name} elapsed {end_ms - start_ms}ms")
+                    try:
+                        eval("print(f'{cls_name}::{name} elapsed {end_ms - start_ms}ms')")
+                    except SyntaxError:
+                        print("{}::{} elapsed {}ms".format(cls_name, name, (end_ms - start_ms)))
                     return returned_value
                 attrs[name] = wrapper
         return super().__new__(mcs, name, bases, attrs)
